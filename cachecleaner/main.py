@@ -117,6 +117,7 @@ credit_label = ctk.CTkLabel(
 )
 credit_label.pack(side="left", padx=20)
 
+
 # Footer button styled as a hyperlink
 link_button = ctk.CTkButton(
     footer_frame, 
