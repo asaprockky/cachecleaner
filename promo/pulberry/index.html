@@ -2,390 +2,579 @@
 <html lang="uz">
 <head>
 <meta charset="utf-8">
-<title>Pulberry promo</title>
+<title>Pulberry promo v2</title>
 <style>
-  :root{
-    --ink:#0b0b0c; --red:#DD2114; --red2:#F0472F; --green:#94C23D; --green2:#B5E35D;
-    --paper:#F4F2EC; --mute:#9A9EA6; --card:#1E1F22; --card2:#333333; --gold:#F2C14E;
-  }
+  :root{--ink:#0b0b0c;--red:#DD2114;--red2:#F0472F;--green:#94C23D;--green2:#B5E35D;--gold:#F2C14E;--mute:#9A9EA6;--card:#1b1c1f;--card2:#26272b;--line:#34363b}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink);font-family:'Inter',system-ui,sans-serif;color:#fff}
   #stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
   .layer{position:absolute;inset:0}
-  .scene{position:absolute;inset:0;display:none;will-change:transform,opacity}
   .abs{position:absolute;will-change:transform,opacity}
-  .blob{position:absolute;width:900px;height:1500px;border-radius:50%;background:var(--red);filter:blur(2px);opacity:.95}
-  h1,h2{font-family:'Inter Display','Inter',sans-serif;font-weight:800;letter-spacing:-0.035em;line-height:1.02}
-  .title{font-size:96px;text-align:center;width:1000px;left:40px}
-  .title .w{display:inline-block;margin:0 14px;will-change:transform,opacity}
+  .hide{display:none!important}
+  h1,.disp{font-family:'Inter Display','Inter',sans-serif;font-weight:800;letter-spacing:-0.035em;line-height:1.02}
   .g{color:var(--green)}
-  .sub{font-size:44px;font-weight:500;line-height:1.3;text-align:center;width:900px;left:90px;color:#E9EAEC;letter-spacing:-0.01em}
-  .wordmark{font-family:'Inter Display','Inter',sans-serif;font-weight:800;letter-spacing:-0.03em;font-size:150px;line-height:1}
-  .tile{position:absolute;width:300px;will-change:transform,opacity;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
-  .big{font-family:'Inter Display','Inter',sans-serif;font-weight:900;font-size:300px;letter-spacing:-0.05em;line-height:.9;color:var(--red2);text-align:center;width:1080px}
-  .phone{position:absolute;width:760px;height:1560px;border-radius:92px;border:14px solid #fff;background:#0d0d0e;overflow:hidden;box-shadow:0 60px 120px rgba(0,0,0,.7)}
-  .phone img{position:absolute;left:0;top:0;width:100%}
-  .phone .notch{position:absolute;left:50%;top:22px;width:200px;height:34px;margin-left:-100px;border-radius:20px;background:#000}
+  /* background */
+  .blob{position:absolute;border-radius:50%;background:var(--red);opacity:.92}
+  #grid{background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.8px);background-size:48px 48px}
+  .bokeh{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(148,194,61,.55),rgba(148,194,61,0) 70%);will-change:transform,opacity}
+  /* titles */
+  #title{position:absolute;left:40px;width:1000px;top:60px;text-align:center;font-size:88px}
+  #title .L,.kin .L{display:inline-block;will-change:transform,opacity}
+  #title .W,.kin .W{display:inline-block;white-space:nowrap;margin:0 12px}
+  #sub{position:absolute;left:90px;width:900px;top:1700px;text-align:center;font-size:40px;font-weight:500;color:#e7e8ea;line-height:1.3}
+  #bottom{position:absolute;left:90px;width:900px;top:1700px;text-align:center;font-size:40px;font-weight:500;color:#e7e8ea;line-height:1.3}
   .pill{position:absolute;border-radius:999px;background:var(--green);color:#0b0b0c;font-weight:800;text-align:center;will-change:transform,opacity}
-  .card{position:absolute;width:640px;border-radius:36px;background:var(--card);overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.6);border:3px solid rgba(255,255,255,.08);will-change:transform,opacity}
-  .card .hd{background:var(--green);color:#0b0b0c;font-weight:700;font-size:30px;padding:16px 36px;display:flex;justify-content:space-between}
-  .card .bd{display:flex;align-items:center;gap:26px;padding:30px 36px 10px}
-  .card .bd img{width:120px;height:120px;object-fit:cover;border-radius:24px;background:#fff}
-  .card .nm{font-size:34px;color:#cfd2d6;font-weight:500}
-  .card .amt{font-size:52px;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
-  .card .btn{margin:22px 36px 34px;background:var(--red);border-radius:999px;text-align:center;font-weight:700;font-size:32px;padding:20px}
-  .row{position:absolute;left:70px;width:940px;height:250px;border-radius:40px;background:var(--card2);border:3px solid var(--green);overflow:hidden;display:flex;align-items:center;will-change:transform,opacity;box-shadow:0 30px 60px rgba(0,0,0,.5)}
-  .row img{position:absolute;top:0;height:100%;object-fit:cover}
-  .row .tx{position:absolute;font-size:40px;font-weight:800;line-height:1.15;letter-spacing:-0.02em;width:430px}
-  .chip{position:absolute;border-radius:999px;background:var(--green);color:#0b0b0c;font-weight:700;font-size:36px;padding:18px 38px;white-space:nowrap;will-change:transform,opacity}
-  .shield{position:absolute;left:80px;width:920px;border-radius:30px;border:3px solid var(--green);background:rgba(148,194,61,.08);padding:34px 40px 34px 130px;font-size:34px;font-weight:600;line-height:1.25;color:var(--green2)}
-  .shield svg{position:absolute;left:40px;top:50%;margin-top:-34px;width:68px;height:68px}
-  .gp{position:absolute;left:50%;width:560px;margin-left:-280px;height:160px;border-radius:26px;background:#000;border:3px solid #5f6368;display:flex;align-items:center;gap:26px;padding:0 36px;will-change:transform,opacity}
+  .big{font-family:'Inter Display','Inter',sans-serif;font-weight:900;letter-spacing:-0.05em;line-height:.9;color:var(--red2);text-align:center}
+  /* phone */
+  #phoneWrap{position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:1800px;perspective-origin:50% 50%;pointer-events:none}
+  #phone{position:absolute;left:210px;top:340px;width:660px;height:1320px;border-radius:88px;background:#0d0d0e;border:14px solid #f3f3f3;box-shadow:0 80px 140px rgba(0,0,0,.75),0 0 0 2px #0b0b0c inset;transform-style:preserve-3d;will-change:transform,opacity;overflow:hidden}
+  #phone .notch{position:absolute;left:50%;top:18px;width:190px;height:36px;margin-left:-95px;border-radius:20px;background:#000;z-index:30}
+  #screen{position:absolute;inset:0;overflow:hidden;background:#0d0d0e}
+  .scr{position:absolute;inset:0;background:#0d0d0e;will-change:transform;font-size:26px;overflow:hidden}
+  .scr .dim{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+  .sb{position:absolute;left:0;right:0;top:0;height:74px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 48px 10px;font-size:24px;font-weight:600;color:#fff}
+  .hdr{position:absolute;left:0;right:0;top:84px;height:80px;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:600}
+  .hdr .back{position:absolute;left:30px;top:16px;width:48px;height:48px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:30px}
+  .btn{position:absolute;left:30px;right:30px;height:106px;border-radius:999px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;will-change:transform;box-shadow:0 14px 30px rgba(221,33,20,.35)}
+  .btn.gbtn{background:var(--green);color:#0b0b0c;box-shadow:0 14px 30px rgba(148,194,61,.3)}
+  .card{position:absolute;left:30px;right:30px;border-radius:32px;background:var(--card);border:2px solid var(--line);padding:26px 30px}
+  .mute{color:var(--mute)}
+  .tag{display:inline-block;border-radius:999px;padding:6px 16px;font-size:20px;font-weight:600}
+  .tag.y{background:rgba(242,193,78,.18);color:var(--gold)} .tag.gr{background:rgba(148,194,61,.18);color:var(--green)}
+  .nav{position:absolute;left:0;right:0;bottom:0;height:110px;background:#121214;border-top:1px solid #222;display:flex;justify-content:space-around;align-items:center;font-size:20px;color:#7d8187}
+  .nav div{display:flex;flex-direction:column;align-items:center;gap:6px} .nav .on{color:var(--green)} .nav .ic{width:32px;height:32px;border-radius:9px;background:currentColor;opacity:.9}
+  .stepper{position:absolute;left:0;right:0;top:200px;display:flex;justify-content:center;gap:0;align-items:center}
+  .stepper .st{width:60px;height:60px;border-radius:50%;border:3px solid #3a3b3f;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:600;color:#8b8e94;background:#151618}
+  .stepper .st.on{border-color:var(--green);color:var(--green);background:#141a0d}
+  .stepper .st.done{background:var(--green);color:#0b0b0c;border-color:var(--green)}
+  .stepper .ln{width:70px;height:3px;background:#3a3b3f}
+  .slider{position:absolute;left:30px;right:30px;height:8px;border-radius:4px;background:#3a3b3f}
+  .slider .fill{position:absolute;left:0;top:0;height:100%;border-radius:4px;background:var(--green)}
+  .slider .th{position:absolute;top:-24px;width:56px;height:56px;border-radius:50%;background:var(--green);box-shadow:0 6px 18px rgba(0,0,0,.5);margin-left:-28px}
+  .chip2{position:absolute;width:256px;height:92px;border-radius:24px;border:2px solid var(--line);background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:600}
+  .chip2.on{border-color:var(--green);background:#1a2410;color:var(--green)}
+  .ocard{position:absolute;left:30px;right:30px;height:270px;border-radius:30px;background:var(--card);border:2px solid var(--line);overflow:hidden;will-change:transform,opacity}
+  .ocard .oh{height:62px;background:var(--green);color:#0b0b0c;font-weight:700;font-size:24px;display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+  .ocard .ob{display:flex;align-items:center;gap:22px;padding:22px 28px 0}
+  .ocard .ob img{width:84px;height:84px;object-fit:cover;border-radius:20px;background:#fff}
+  .ocard .nm{font-size:24px;color:#c9ccd1} .ocard .amt{font-size:38px;font-weight:800;letter-spacing:-0.02em}
+  .ocard .ob2{position:absolute;left:28px;right:28px;top:176px;height:64px;border-radius:999px;background:var(--red);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:24px}
+  .ocard .det{position:absolute;left:28px;right:28px;top:255px;font-size:22px;color:#c9ccd1;line-height:1.7;opacity:0}
+  .ocard .acc{position:absolute;left:28px;right:28px;top:336px;height:64px;border-radius:999px;background:var(--green);color:#0b0b0c;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:24px;opacity:0}
+  .tcard{position:absolute;left:30px;right:30px;height:250px;border-radius:30px;background:var(--card2);border:2px solid var(--green);overflow:hidden;will-change:transform,opacity}
+  .tcard .ph{position:absolute;top:0;bottom:0;width:300px;overflow:hidden}
+  .tcard .ph img{position:absolute;left:50%;top:50%;height:120%;transform:translate(-50%,-50%);will-change:transform}
+  .tcard .tx{position:absolute;top:0;bottom:0;width:260px;display:flex;align-items:center;font-size:26px;font-weight:700;line-height:1.25}
+  .row{display:flex;justify-content:space-between;font-size:24px;padding:8px 0;color:#c9ccd1}
+  .row b{color:#fff;font-weight:600}
+  #finger{position:absolute;width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.28);border:3px solid rgba(255,255,255,.85);box-shadow:0 10px 30px rgba(0,0,0,.5);margin:-36px 0 0 -36px;z-index:40;will-change:transform,opacity}
+  #ripple{position:absolute;width:72px;height:72px;border-radius:50%;border:4px solid rgba(255,255,255,.9);margin:-36px 0 0 -36px;z-index:39;will-change:transform,opacity}
+  .toast{position:absolute;left:30px;right:30px;top:90px;height:96px;border-radius:24px;background:var(--green);color:#0b0b0c;font-weight:700;font-size:26px;display:flex;align-items:center;gap:16px;padding:0 26px;z-index:35;box-shadow:0 20px 40px rgba(0,0,0,.5);will-change:transform,opacity}
+  .ring{position:absolute;border-radius:50%;border:4px solid var(--green);will-change:transform,opacity}
+  .succ{position:absolute;inset:0;background:rgba(10,14,6,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:20}
+  .succ .chk{width:230px;height:230px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(148,194,61,.6)}
+  .succ .h{font-size:54px;font-weight:800;font-family:'Inter Display','Inter';letter-spacing:-0.03em;color:#fff}
+  .succ .s{font-size:32px;color:var(--green)}
+  .sweep{position:absolute;inset:-200px;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);z-index:38;pointer-events:none;will-change:transform}
+  /* ring of partner tiles */
+  .ringL{position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:1600px;perspective-origin:50% 50%;pointer-events:none}
+  .ringL .rt{position:absolute;left:420px;top:860px;width:240px;height:240px;transform-style:preserve-3d;will-change:transform,opacity;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+  .ringL .rt img{width:100%;height:100%;object-fit:contain}
+  /* particles */
+  .pt{position:absolute;left:0;top:0;width:18px;height:18px;border-radius:4px;will-change:transform,opacity}
+  /* outro */
+  .gp{position:absolute;left:50%;width:560px;margin-left:-280px;height:160px;border-radius:26px;background:#000;border:3px solid #5f6368;display:flex;align-items:center;gap:26px;padding:0 36px;overflow:hidden;will-change:transform,opacity}
   .gp .tri{width:70px;height:78px;flex:none}
   .gp .t1{font-size:22px;letter-spacing:.14em;color:#ddd;font-weight:600;text-transform:uppercase}
   .gp .t2{font-size:54px;font-weight:600;letter-spacing:-0.02em;line-height:1.05}
-  .vignette{background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.55) 100%);pointer-events:none}
-  .grain{opacity:.055;mix-blend-mode:overlay;pointer-events:none}
-  .ring{position:absolute;border-radius:999px;border:5px solid var(--green);will-change:transform,opacity}
-  .star{color:var(--gold)}
+  .gp .shine{position:absolute;inset:-100px;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);will-change:transform}
+  .stars{position:absolute;left:0;width:1080px;text-align:center;font-size:72px;letter-spacing:6px;color:#3a3b3f}
+  .stars span{display:inline-block;position:relative;will-change:transform}
+  .stars span i{position:absolute;left:0;top:0;color:var(--gold);font-style:normal;overflow:hidden;width:0}
+  .chipC{position:absolute;border-radius:999px;background:var(--green);color:#0b0b0c;font-weight:700;font-size:34px;padding:18px 34px;white-space:nowrap;will-change:transform,opacity;box-shadow:0 20px 40px rgba(0,0,0,.5)}
+  .shield{position:absolute;left:80px;width:920px;border-radius:30px;border:3px solid var(--green);background:rgba(148,194,61,.1);padding:30px 40px 30px 130px;font-size:32px;font-weight:600;line-height:1.25;color:var(--green2);will-change:transform,opacity}
+  .shield svg{position:absolute;left:40px;top:50%;margin-top:-34px;width:68px;height:68px}
+  .vignette{background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 50%,rgba(0,0,0,.6) 100%);pointer-events:none}
+  .grain{opacity:.07;pointer-events:none}
+  #wipe{position:absolute;left:-400px;top:-600px;width:1900px;height:3200px;border-radius:900px;background:var(--red);z-index:90;will-change:transform}
+  #fade{position:absolute;inset:0;background:#000;opacity:0;z-index:95;pointer-events:none}
+  #flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:89;pointer-events:none}
 </style>
 </head>
 <body>
 <div id="stage">
-  <!-- background -->
   <div class="layer" id="bg">
-    <div class="blob" id="blob1" style="left:-520px;top:-500px;transform:rotate(-30deg)"></div>
-    <div class="blob" id="blob2" style="left:720px;top:1000px;width:700px;height:1200px"></div>
-    <div class="layer" style="background:radial-gradient(ellipse at 50% 50%,rgba(11,11,12,.35) 20%,rgba(11,11,12,.92) 70%)"></div>
+    <div class="blob" id="blob1" style="left:-560px;top:-520px;width:980px;height:1600px"></div>
+    <div class="blob" id="blob2" style="left:700px;top:1050px;width:760px;height:1300px"></div>
+    <div class="layer" style="background:radial-gradient(ellipse at 50% 50%,rgba(11,11,12,.3) 15%,rgba(11,11,12,.93) 70%)"></div>
+    <div class="layer" id="grid" style="opacity:.5"></div>
+    <div class="layer" id="bokeh"></div>
   </div>
 
-  <!-- S1 hook -->
-  <div class="scene" id="s1">
-    <img class="abs" id="s1logo" src="assets/logo.png" style="width:360px;left:360px;top:620px">
-    <div class="abs wordmark" id="s1wm" style="left:0;width:1080px;text-align:center;top:1010px">Pulberry</div>
-    <h1 class="abs title" id="s1t" style="top:1230px;font-size:120px"></h1>
-    <p class="abs sub" id="s1s" style="top:1520px"></p>
+  <!-- hook -->
+  <div class="layer" id="hook">
+    <img class="abs" id="hlogo" src="assets/logo.png" style="width:380px;left:350px;top:560px">
+    <div class="abs disp kin" id="hwm" style="left:0;width:1080px;text-align:center;top:980px;font-size:150px"></div>
+    <div class="abs disp kin" id="htitle" style="left:0;width:1080px;text-align:center;top:1200px;font-size:124px;color:var(--green)"></div>
+    <div class="abs" id="hsub" style="left:90px;width:900px;top:1480px;text-align:center;font-size:42px;font-weight:500;color:#e7e8ea"></div>
   </div>
 
-  <!-- S2 partners -->
-  <div class="scene" id="s2">
-    <img class="tile" id="t1" src="assets/tile-fortuna.png">
-    <img class="tile" id="t2" src="assets/tile-hamroh.png">
-    <img class="tile" id="t3" src="assets/tile-contact.png">
-    <img class="tile" id="t4" src="assets/tile-asr.png">
-    <img class="tile" id="t5" src="assets/tile-delta.png">
-    <img class="tile" id="t6" src="assets/tile-chinor.png">
-    <div class="abs big" id="s2n" style="top:1180px">+0</div>
-    <p class="abs sub" id="s2s" style="top:1500px"></p>
-  </div>
+  <!-- title zones -->
+  <h1 id="title" class="abs"></h1>
+  <div id="sub" class="abs"></div>
+  <div id="bottom" class="abs"></div>
+  <div class="abs big" id="bigN" style="left:0;width:1080px;top:60px;font-size:250px"></div>
+  <div class="abs pill" id="pill3" style="left:240px;top:1700px;width:600px;font-size:52px;padding:26px 0"></div>
+  <div class="shield abs" id="shield" style="top:1740px"><svg viewBox="0 0 24 24" fill="none" stroke="#94C23D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v6c0 5-3.5 8.5-8 10.5-4.5-2-8-5.5-8-10.5v-6L12 2z"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg><span id="shieldtx"></span></div>
 
-  <!-- S3 one application -->
-  <div class="scene" id="s3">
-    <h1 class="abs title" id="s3t" style="top:200px"></h1>
-    <p class="abs sub" id="s3s" style="top:360px"></p>
-    <div class="phone abs" id="s3p" style="left:160px;top:600px">
-      <img src="assets/screen-form.png">
+  <!-- ring behind phone -->
+  <div class="ringL" id="ringBack"></div>
+
+  <!-- phone -->
+  <div id="phoneWrap">
+    <div id="phone">
       <div class="notch"></div>
-      <div class="ring" id="s3ring" style="left:12px;top:978px;width:708px;height:118px;border-radius:70px"></div>
+      <div id="screen">
+        <!-- HOME -->
+        <div class="scr" id="scr-home">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="abs" style="left:36px;top:96px;display:flex;align-items:center;gap:14px"><img src="assets/logo.png" style="width:46px"><span style="font-size:34px;font-weight:800;font-family:'Inter Display'">Pulberry</span></div>
+          <div class="abs" style="right:36px;top:92px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#94C23D,#DD2114)"></div>
+          <div class="abs mute" style="left:36px;top:176px;font-size:28px">Salom, Aziz 👋</div>
+          <div class="card" style="top:226px;height:210px;background:linear-gradient(135deg,#1f2a12,#151618)">
+            <div class="mute" style="font-size:24px">Umumiy qarz</div>
+            <div style="font-size:54px;font-weight:800;letter-spacing:-0.03em;margin-top:6px"><span id="homeTotal">803 266,97</span> <span style="font-size:28px;font-weight:600;color:#c9ccd1">so‘m</span></div>
+            <div style="margin-top:14px"><span class="tag gr">2 ta faol kredit</span></div>
+          </div>
+          <div class="abs" style="left:36px;top:470px;font-size:28px;font-weight:700">Mening kreditlarim</div>
+          <div class="card" id="homeL1" style="top:522px;height:150px">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:28px">Hamroh MMT</b><span class="tag y">Muddati yetib keldi</span></div>
+            <div class="mute" style="font-size:22px;margin-top:8px">ONL-0010/2026 · 23.02.2026</div>
+            <div style="font-size:30px;font-weight:700;margin-top:8px;color:var(--gold)">38 527,11 so‘m</div>
+          </div>
+          <div class="card" id="homeL2" style="top:696px;height:150px">
+            <div style="display:flex;justify-content:space-between"><b style="font-size:28px">Delta</b><span class="tag gr">Faol</span></div>
+            <div class="mute" style="font-size:22px;margin-top:8px">ONL-0042/2026 · 23.03.2026</div>
+            <div style="font-size:30px;font-weight:700;margin-top:8px">1 250 000 so‘m</div>
+          </div>
+          <div class="card" style="top:870px;height:120px;display:flex;align-items:center;gap:20px"><div style="width:60px;height:60px;border-radius:16px;background:#2b2c30;display:flex;align-items:center;justify-content:center;font-size:30px">🔔</div><div><div style="font-weight:600">Eslatma</div><div class="mute" style="font-size:22px">Bugun to‘lov kuni — Hamroh MMT</div></div></div>
+          <div class="btn" id="btnGet" style="top:1030px">Kredit olish</div>
+          <div class="nav"><div class="on"><div class="ic"></div>Asosiy</div><div><div class="ic"></div>Takliflar</div><div><div class="ic"></div>Xarita</div><div><div class="ic"></div>Profil</div></div>
+          <div class="dim"></div>
+        </div>
+        <!-- STEP 1 -->
+        <div class="scr" id="scr-step1">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="hdr"><div class="back">‹</div>Sizning ehtiyojlaringiz</div>
+          <div class="stepper"><div class="st on">1</div><div class="ln"></div><div class="st">2</div><div class="ln"></div><div class="st">3</div><div class="ln"></div><div class="st">4</div></div>
+          <div class="card" style="top:300px;height:330px">
+            <div style="font-size:26px;font-weight:600">Qanday summa kerak?</div>
+            <div id="amt" style="font-size:52px;font-weight:800;color:var(--green);text-align:center;margin-top:30px;letter-spacing:-0.02em">100 000</div>
+            <div class="slider" style="top:198px"><div class="fill" id="sfill" style="width:0"></div><div class="th" id="sth" style="left:0"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:74px;font-size:24px;color:#c9ccd1"><span>100 000</span><span>300 000 000</span></div>
+          </div>
+          <div class="card" style="top:660px;height:120px;display:flex;align-items:center;justify-content:space-between"><span>Valyuta</span><b>UZS so‘m ▾</b></div>
+          <div class="btn" id="btnNext1" style="top:1060px">Davom etish</div>
+          <div class="abs mute" style="left:0;width:100%;text-align:center;top:1196px;font-size:24px;text-decoration:underline">Bekor qilish</div>
+          <div class="dim"></div>
+        </div>
+        <!-- STEP 2 -->
+        <div class="scr" id="scr-step2">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="hdr"><div class="back">‹</div>Kredit muddati</div>
+          <div class="stepper"><div class="st done">✓</div><div class="ln"></div><div class="st on">2</div><div class="ln"></div><div class="st">3</div><div class="ln"></div><div class="st">4</div></div>
+          <div class="card" style="top:300px;height:380px">
+            <div style="font-size:26px;font-weight:600">Qancha muddatga?</div>
+            <div class="chip2" style="left:30px;top:90px">3 oy</div>
+            <div class="chip2" style="left:316px;top:90px">6 oy</div>
+            <div class="chip2" id="chip12" style="left:30px;top:210px">12 oy</div>
+            <div class="chip2" style="left:316px;top:210px">24 oy</div>
+          </div>
+          <div class="card" style="top:710px;height:120px;display:flex;align-items:center;justify-content:space-between"><span>Maqsad</span><b>Biznes uchun ▾</b></div>
+          <div class="card" style="top:860px;height:120px;display:flex;align-items:center;justify-content:space-between"><span>Oylik daromad</span><b>8 000 000 so‘m</b></div>
+          <div class="btn" id="btnSend" style="top:1060px">Yuborish</div>
+          <div class="dim"></div>
+        </div>
+        <!-- PROCESSING -->
+        <div class="scr" id="scr-proc">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <svg class="abs" id="pring" width="360" height="360" viewBox="0 0 360 360" style="left:136px;top:380px">
+            <circle cx="180" cy="180" r="150" fill="none" stroke="#2a2b2e" stroke-width="22"/>
+            <circle id="parc" cx="180" cy="180" r="150" fill="none" stroke="#94C23D" stroke-width="22" stroke-linecap="round" transform="rotate(-90 180 180)" stroke-dasharray="942.5" stroke-dashoffset="942.5"/>
+            <text id="ppct" x="180" y="205" text-anchor="middle" font-family="Inter Display, Inter" font-weight="800" font-size="76" fill="#fff" letter-spacing="-3">0%</text>
+            <g id="pchk" opacity="0" transform-origin="180 180"><circle cx="180" cy="180" r="118" fill="#94C23D"/><path d="M120 184 L162 226 L246 136" fill="none" stroke="#0b0b0c" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </svg>
+          <div class="abs" id="ptx" style="left:0;width:100%;text-align:center;top:800px;font-size:34px;font-weight:700">Arizangiz ko‘rib chiqilmoqda…</div>
+          <div class="abs mute" id="ptx2" style="left:0;width:100%;text-align:center;top:860px;font-size:26px">Odatda 3 daqiqa</div>
+          <div class="card" style="top:960px;height:200px"><div class="row"><span>Summa</span><b>50 000 000 so‘m</b></div><div class="row"><span>Muddat</span><b>12 oy</b></div><div class="row"><span>Yuborildi</span><b>23 tashkilotga</b></div></div>
+          <div class="toast" id="toast"><span style="font-size:34px">🎉</span><span>3 ta yangi taklif keldi!</span></div>
+          <div class="dim"></div>
+        </div>
+        <!-- OFFERS -->
+        <div class="scr" id="scr-offers">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="hdr"><div class="back">‹</div>Takliflar <span class="tag gr" style="margin-left:14px">3</span></div>
+          <div class="abs" style="left:0;top:170px;width:100%;height:1010px;overflow:hidden"><div id="olist" class="abs" style="left:0;top:-170px;width:100%;height:1300px">
+            <div class="ocard" id="oc1" style="top:190px"><div class="oh"><span>Yangi taklif</span><span>›</span></div><div class="ob"><img src="assets/tile-delta.png"><div><div class="nm">Delta</div><div class="amt" id="oa1">0,00</div></div></div><div class="ob2">Ko‘rish</div></div>
+            <div class="ocard" id="oc2" style="top:484px"><div class="oh"><span>Yangi taklif</span><span>›</span></div><div class="ob"><img src="assets/tile-fortuna.png"><div><div class="nm">Fortuna Biznes</div><div class="amt" id="oa2">0,00</div></div></div><div class="ob2">Ko‘rish</div></div>
+            <div class="ocard" id="oc3" style="top:778px"><div class="oh"><span>Yangi taklif</span><span>›</span></div><div class="ob"><img src="assets/tile-hamroh.png"><div><div class="nm">Hamroh MMT</div><div class="amt" id="oa3">0,00</div></div></div><div class="ob2" id="oc3view">Ko‘rish</div>
+              <div class="det"><div style="display:flex;justify-content:space-between"><span>Foiz stavkasi</span><b>2,5% / oy</b></div><div style="display:flex;justify-content:space-between"><span>Muddat</span><b>12 oy</b></div></div>
+              <div class="acc" id="oc3acc">Qabul qilish ✓</div>
+            </div>
+          </div>
+          </div><div class="nav"><div><div class="ic"></div>Asosiy</div><div class="on"><div class="ic"></div>Takliflar</div><div><div class="ic"></div>Xarita</div><div><div class="ic"></div>Profil</div></div>
+          <div class="dim"></div>
+        </div>
+        <!-- TYPES -->
+        <div class="scr" id="scr-types">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="hdr"><div class="back">‹</div>Kredit turlari</div>
+          <div class="abs" style="left:0;top:170px;width:100%;height:1122px;overflow:hidden"><div id="tlist" class="abs" style="left:0;top:-170px;width:100%;height:1300px">
+            <div class="tcard" id="tc1" style="top:190px"><div class="tx" style="left:30px"><span>Kartaga<br><span class="g">onlayn kredit</span></span></div><div class="ph" style="right:0"><img src="assets/ph-card.png" id="kb1"></div></div>
+            <div class="tcard" id="tc2" style="top:460px"><div class="ph" style="left:0"><img src="assets/ph-car.png" id="kb2"></div><div class="tx" style="right:30px"><span><span class="g">Avtomobil garovi</span><br>evaziga kredit</span></div></div>
+            <div class="tcard" id="tc3" style="top:730px"><div class="tx" style="left:30px"><span><span class="g">Oltin garovi</span><br>evaziga kredit</span></div><div class="ph" style="right:0"><img src="assets/ph-gold.png" id="kb3"></div></div>
+            <div class="tcard" id="tc4" style="top:1000px"><div class="ph" style="left:0"><img src="assets/ph-house.png" id="kb4"></div><div class="tx" style="right:30px"><span><span class="g">Ko‘chmas mulk</span><br>garovi evaziga</span></div></div>
+          </div></div>
+          <div class="dim"></div>
+        </div>
+        <!-- PAY -->
+        <div class="scr" id="scr-pay">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="hdr"><div class="back">‹</div>To‘lov</div>
+          <div class="card" style="top:176px;height:206px;border-color:var(--gold)">
+            <span class="tag y">Muddati yetib keldi</span>
+            <div style="display:flex;justify-content:space-between;margin-top:12px"><b style="font-size:30px">Hamroh MMT</b><span class="mute">›</span></div>
+            <div class="mute" style="font-size:22px;margin-top:6px">ONL-0010/2026 · 23.02.2026</div>
+            <div class="row" style="padding-top:12px"><span>Umumiy qarz</span><b style="color:var(--gold)">803 266,97</b></div>
+          </div>
+          <div class="card" style="top:408px;height:330px;border-color:var(--gold)">
+            <div class="mute" style="font-size:22px">To‘lov summasi</div>
+            <div id="paySum" style="font-size:46px;font-weight:800;letter-spacing:-0.02em;margin:4px 0 8px">0,00</div>
+            <div class="row" style="padding:5px 0"><span>Asosiy qarz</span><b>0,00</b></div>
+            <div class="row" style="padding:5px 0"><span>Foizlar</span><b id="payInt">0,00</b></div>
+            <div class="row" style="padding:5px 0"><span>Penya</span><b>0,00</b></div>
+            <div class="row" style="padding:5px 0"><span class="g">Avans</span><b class="g">0,00</b></div>
+          </div>
+          <div class="card" style="top:766px;height:110px;display:flex;align-items:center;justify-content:space-between"><span class="mute">Sizning to‘lov summangiz</span><b style="font-size:28px" id="payIn">0,00</b></div>
+          <div class="card" style="top:900px;height:124px;padding:16px 30px"><div class="row" style="padding:6px 0"><span>Servis komissiyasi</span><b>1%</b></div><div class="row" style="padding:6px 0"><span>Jami</span><b id="payTot" style="font-size:28px">0,00</b></div></div>
+          <div class="btn" id="btnPay" style="top:1060px">To‘lash</div>
+          <div class="succ" id="paySucc"><div class="chk" id="payChk"><svg width="130" height="130" viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="h" id="succH">To‘landi!</div><div class="s" id="succS">38 912,38 so‘m</div><div class="mute" id="succM" style="font-size:24px">Chek yuborildi ✓</div></div>
+          <div class="dim"></div>
+        </div>
+        <!-- MAP -->
+        <div class="scr" id="scr-map">
+          <div class="sb"><span>9:41</span><span>▲▮ 78%</span></div>
+          <div class="hdr"><div class="back">‹</div>Xarita</div>
+          <div class="card" style="top:176px;height:90px;display:flex;align-items:center;gap:16px;padding:0 26px"><span style="font-size:28px">🔍</span><span class="mute">Yaqin-atrofdagi filiallar</span></div>
+          <div class="abs" style="left:0;top:290px;width:632px;height:640px;overflow:hidden;background:#0f0f10"><img src="assets/map.png" id="mapimg" style="position:absolute;left:0;top:30px;width:632px;will-change:transform"></div>
+          <div class="ring" id="mr1" style="left:191px;top:629px;width:30px;height:30px;margin:-15px 0 0 -15px"></div>
+          <div class="ring" id="mr2" style="left:401px;top:781px;width:30px;height:30px;margin:-15px 0 0 -15px"></div>
+          <div class="ring" id="mr3" style="left:500px;top:735px;width:30px;height:30px;margin:-15px 0 0 -15px"></div>
+          <div class="card" id="mapSheet" style="top:930px;height:362px;border-radius:40px 40px 0 0;left:0;right:0;border-bottom:0">
+            <div style="width:80px;height:6px;border-radius:3px;background:#3a3b3f;margin:-6px auto 18px"></div>
+            <div style="font-weight:700;font-size:28px">Yaqin-atrofda 3 ta filial</div>
+            <div class="row" style="padding:14px 0;border-bottom:1px solid var(--line)"><span><b>Fortuna Biznes</b><br><span class="mute" style="font-size:20px">1,2 km · Ochiq</span></span><span class="tag gr">Yo‘l</span></div>
+            <div class="row" style="padding:14px 0;border-bottom:1px solid var(--line)"><span><b>Hamroh MMT</b><br><span class="mute" style="font-size:20px">2,4 km · Ochiq</span></span><span class="tag gr">Yo‘l</span></div>
+            <div class="row" style="padding:14px 0"><span><b>Delta</b><br><span class="mute" style="font-size:20px">3,1 km · Ochiq</span></span><span class="tag gr">Yo‘l</span></div>
+          </div>
+          <div class="dim"></div>
+        </div>
+        <div id="ripple"></div>
+        <div id="finger"></div>
+        <div class="sweep" id="sweep"></div>
+      </div>
     </div>
   </div>
 
-  <!-- S4 fast review -->
-  <div class="scene" id="s4">
-    <h1 class="abs title" id="s4t" style="top:300px"></h1>
-    <svg class="abs" id="s4clock" width="640" height="640" viewBox="0 0 640 640" style="left:220px;top:620px">
-      <circle cx="320" cy="320" r="280" fill="none" stroke="#2a2b2e" stroke-width="26"/>
-      <circle id="s4arc" cx="320" cy="320" r="280" fill="none" stroke="#94C23D" stroke-width="26" stroke-linecap="round" transform="rotate(-90 320 320)" stroke-dasharray="1759.3" stroke-dashoffset="1759.3"/>
-      <g id="s4check" opacity="0" transform-origin="320 320">
-        <circle cx="320" cy="320" r="150" fill="#94C23D"/>
-        <path d="M240 325 L300 385 L410 262" fill="none" stroke="#0b0b0c" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
-      <text id="s4num" x="320" y="372" text-anchor="middle" font-family="Inter Display, Inter" font-weight="900" font-size="190" fill="#fff" letter-spacing="-8">3</text>
-    </svg>
-    <div class="abs pill" id="s4pill" style="left:190px;top:1330px;width:700px;font-size:60px;padding:30px 0"></div>
-    <p class="abs sub" id="s4s" style="top:1500px"></p>
+  <!-- ring in front -->
+  <div class="ringL" id="ringFront"></div>
+  <div id="cities"></div>
+  <!-- particles -->
+  <div class="layer" id="fx"></div>
+
+  <!-- outro -->
+  <div class="layer" id="outro">
+    <img class="abs" id="ologo" src="assets/logo.png" style="width:320px;left:380px;top:430px">
+    <div class="abs disp kin" id="owm" style="left:0;width:1080px;text-align:center;top:780px;font-size:140px"></div>
+    <div class="abs" id="otag" style="left:90px;width:900px;top:960px;text-align:center;font-size:50px;font-weight:600"></div>
+    <div class="stars abs" id="ostars" style="top:1060px"></div>
+    <div class="abs" id="orate" style="left:90px;width:900px;top:1170px;text-align:center;font-size:36px;color:#d7d9dc"></div>
+    <div class="gp abs" id="ogp" style="top:1290px"><svg class="tri" viewBox="0 0 70 78"><path d="M4 6c0-3 3-5 6-3l50 29c3 2 3 6 0 8L10 69c-3 2-6 0-6-3V6z" fill="#34A853"/><path d="M4 6c0-3 3-5 6-3l34 20L10 54 4 48V6z" fill="#4285F4" opacity=".95"/><path d="M44 23l16 9c3 2 3 6 0 8l-16 9-12-13 12-13z" fill="#FBBC04"/><path d="M4 6c0-2 1-3 2-4l38 34-38 34c-1-1-2-2-2-4V6z" fill="#EA4335" opacity=".9"/></svg><div><div class="t1" id="ogp1"></div><div class="t2">Google Play</div></div><div class="shine" id="oshine"></div></div>
+    <div class="abs" id="oig" style="left:90px;width:900px;top:1530px;text-align:center;font-size:40px;color:#bfc3c8;font-weight:600"></div>
+    <div class="abs" id="ofx" style="left:0;width:1080px;top:1720px;text-align:center;font-size:30px;color:#6f737a;font-weight:500"></div>
   </div>
 
-  <!-- S5 compare -->
-  <div class="scene" id="s5">
-    <h1 class="abs title" id="s5t" style="top:180px"></h1>
-    <div class="card" id="c1" style="left:120px;top:460px">
-      <div class="hd"><span class="lbl">Yangi taklif</span><span>›</span></div>
-      <div class="bd"><img src="assets/tile-delta.png"><div><div class="nm">Delta</div><div class="amt">90 000 000,00</div></div></div>
-      <div class="btn">Ko'rish</div>
-    </div>
-    <div class="card" id="c2" style="left:300px;top:800px">
-      <div class="hd"><span class="lbl">Yangi taklif</span><span>›</span></div>
-      <div class="bd"><img src="assets/tile-fortuna.png"><div><div class="nm">Fortuna Biznes</div><div class="amt">120 000 000,00</div></div></div>
-      <div class="btn">Ko'rish</div>
-    </div>
-    <div class="card" id="c3" style="left:160px;top:1140px">
-      <div class="hd"><span class="lbl">Yangi taklif</span><span>›</span></div>
-      <div class="bd"><img src="assets/tile-hamroh.png"><div><div class="nm">Hamroh MMT</div><div class="amt">155 000 000,00</div></div></div>
-      <div class="btn">Ko'rish</div>
-    </div>
-    <p class="abs sub" id="s5s" style="top:1560px"></p>
-  </div>
-
-  <!-- S6 loan types -->
-  <div class="scene" id="s6">
-    <h1 class="abs title" id="s6t" style="top:200px"></h1>
-    <div class="row" id="r1" style="top:520px"><div class="tx" style="left:50px"></div><img src="assets/ph-card.png" style="right:0;left:auto"></div>
-    <div class="row" id="r2" style="top:820px"><img src="assets/ph-car.png" style="left:0"><div class="tx" style="right:50px;text-align:right"></div></div>
-    <div class="row" id="r3" style="top:1120px"><div class="tx" style="left:50px"></div><img src="assets/ph-gold.png" style="right:0;left:auto"></div>
-    <div class="row" id="r4" style="top:1420px"><img src="assets/ph-house.png" style="left:0"><div class="tx" style="right:50px;text-align:right"></div></div>
-  </div>
-
-  <!-- S7 pay -->
-  <div class="scene" id="s7">
-    <div class="phone abs" id="s7p" style="left:160px;top:110px;height:1300px">
-      <img src="assets/screen-pay.png" style="width:100%">
-      <div class="notch"></div>
-      <div class="pill" id="s7paid" style="left:180px;top:560px;width:380px;font-size:48px;padding:26px 0;box-shadow:0 30px 60px rgba(0,0,0,.6)"></div>
-    </div>
-    <h1 class="abs title" id="s7t" style="top:1420px"></h1>
-    <p class="abs sub" id="s7s" style="top:1660px"></p>
-  </div>
-
-  <!-- S8 coverage -->
-  <div class="scene" id="s8">
-    <h1 class="abs title" id="s8t" style="top:150px"></h1>
-    <img class="abs" id="s8map" src="assets/map.png" style="width:960px;left:60px;top:840px;-webkit-mask-image:radial-gradient(ellipse 52% 52% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 52% 52% at 50% 50%,#000 60%,transparent 100%)">
-    <div id="chips"></div>
-    <div class="shield abs" id="s8sh" style="top:1720px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#94C23D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v6c0 5-3.5 8.5-8 10.5-4.5-2-8-5.5-8-10.5v-6L12 2z"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>
-      <span id="s8shtx"></span>
-    </div>
-  </div>
-
-  <!-- S9 outro -->
-  <div class="scene" id="s9">
-    <img class="abs" id="s9logo" src="assets/logo.png" style="width:300px;left:390px;top:430px">
-    <div class="abs wordmark" id="s9wm" style="left:0;width:1080px;text-align:center;top:760px;font-size:140px">Pulberry</div>
-    <p class="abs sub" id="s9tag" style="top:950px;font-size:50px;font-weight:600"></p>
-    <p class="abs sub" id="s9rate" style="top:1080px;font-size:40px;color:#d7d9dc"></p>
-    <div class="gp abs" id="s9gp" style="top:1230px">
-      <svg class="tri" viewBox="0 0 70 78"><path d="M4 6c0-3 3-5 6-3l50 29c3 2 3 6 0 8L10 69c-3 2-6 0-6-3V6z" fill="#34A853"/><path d="M4 6c0-3 3-5 6-3l34 20L10 54 4 48V6z" fill="#4285F4" opacity=".95"/><path d="M44 23l16 9c3 2 3 6 0 8l-16 9-12-13 12-13z" fill="#FBBC04"/><path d="M4 6c0-2 1-3 2-4l38 34-38 34c-1-1-2-2-2-4V6z" fill="#EA4335" opacity=".9"/></svg>
-      <div><div class="t1" id="s9gp1"></div><div class="t2">Google Play</div></div>
-    </div>
-    <p class="abs sub" id="s9ig" style="top:1480px;font-size:38px;color:#bfc3c8;font-weight:600"></p>
-    <div class="abs" id="s9fx" style="left:0;width:1080px;top:1700px;text-align:center;font-size:30px;color:#6f737a;font-weight:500"></div>
-  </div>
-
-  <!-- overlays -->
+  <div id="wipe"></div>
+  <div id="flash"></div>
   <div class="layer vignette"></div>
-  <svg class="layer grain" id="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect id="grainrect" width="200%" height="200%" filter="url(#n)"/></svg>
+  <div class="layer grain" id="grain" style="background:url(assets/noise.png);background-size:256px 256px"></div>
+  <div id="fade"></div>
 </div>
 
 <script>
-// ---------- copy ----------
-const COPY = {
-  uz: {
-    s1t: ["Pul","kerakmi?"], s1s: "Kerakli kreditni bitta ilovada toping.",
-    s2s: "kredit tashkilotlarining filiallari",
-    s3t: ["Bitta","ariza","qoldiring"], s3s: "va kim sizga kredit berishga tayyorligini bilib oling.",
-    s4t: ["Tezkor","ko‘rib","chiqish"], s4pill: "3 daqiqadan boshlab", s4s: "Javobni ilovaning o‘zida oling.",
-    s5t: ["Taqqoslang","va","tanlang"], s5s: "Shartlarni ko‘rib chiqing va o‘zingizga mos kreditni tanlang.",
-    offer: "Yangi taklif", view: "Ko‘rish",
-    s6t: ["Kerakli","kredit","turini","tanlang"], rows: ["Kartaga <span class=g>onlayn kredit</span>","<span class=g>Avtomobil garovi</span> evaziga kredit","<span class=g>Oltin garovi</span> evaziga kredit","<span class=g>Ko‘chmas mulk garovi</span> evaziga kredit"],
-    s7t: ["Kreditlarni","bitta","ilovada","to‘lang"], s7s: "To‘lovlarni kuzating va qarzingizni onlayn yoping.", paid: "To‘landi ✓",
-    s8t: ["Butun","O‘zbekiston","bo‘ylab"], cities: ["Toshkent","Samarqand","Buxoro","Xiva","Nukus","Namangan","Termiz","Farg‘ona","Qarshi","Andijon","Shahrisabz","Qo‘qon"],
-    s8sh: "Barcha hamkorlar O‘zbekiston Markaziy banki litsenziyasiga ega",
-    s9tag: "Kreditlar — bitta ilovada", s9rate: "<span class=star>★</span> 4,1 &nbsp;·&nbsp; 10 000+ yuklab olingan", s9gp1: "Yuklab oling", s9ig: "@pulberry.uz", s9fx: "FlexSoft LLC mahsuloti · flexsoft.uz"
-  },
-  ru: {
-    s1t: ["Нужны","деньги?"], s1s: "Нужный кредит — в одном приложении.",
-    s2s: "филиалов кредитных организаций",
-    s3t: ["Оставьте","одну","заявку"], s3s: "и узнайте, кто готов выдать вам кредит.",
-    s4t: ["Быстрое","рассмотрение"], s4pill: "от 3 минут", s4s: "Ответ — прямо в приложении.",
-    s5t: ["Сравните","и","выберите"], s5s: "Изучите условия и выберите подходящий кредит.",
-    offer: "Новое предложение", view: "Смотреть",
-    s6t: ["Выберите","нужный","вид","кредита"], rows: ["<span class=g>Онлайн-кредит</span> на карту","Кредит под <span class=g>залог авто</span>","Кредит под <span class=g>залог золота</span>","Кредит под <span class=g>залог недвижимости</span>"],
-    s7t: ["Погашайте","кредиты","в одном","приложении"], s7s: "Следите за платежами и закрывайте долг онлайн.", paid: "Оплачено ✓",
-    s8t: ["По","всему","Узбекистану"], cities: ["Ташкент","Самарканд","Бухара","Хива","Нукус","Наманган","Термез","Фергана","Карши","Андижан","Шахрисабз","Коканд"],
-    s8sh: "Все партнёры имеют лицензию Центрального банка Узбекистана",
-    s9tag: "Кредиты — в одном приложении", s9rate: "<span class=star>★</span> 4,1 &nbsp;·&nbsp; 10 000+ скачиваний", s9gp1: "Скачать в", s9ig: "@pulberry.uz", s9fx: "Продукт FlexSoft LLC · flexsoft.uz"
-  }
+// ---------------- copy ----------------
+const COPY={
+ uz:{hook:"Pul kerakmi?",hsub:"Kerakli kreditni bitta ilovada toping.",
+  beats:{ring:["+100","kredit tashkilotlarining filiallari"],home:[["Barcha","kreditlar"],"bitta ilovada"],apply:[["Bitta","ariza","qoldiring"],"kim kredit berishga tayyor — bilib oling"],
+   proc:[["Tezkor","ko‘rib","chiqish"],""],offers:[["Taqqoslang","va","tanlang"],"shartlarni ko‘ring, mos keladiganini oling"],
+   types:[["Kerakli","kredit","turini","tanlang"],"karta · avto · oltin · ko‘chmas mulk"],pay:[["Bitta","ilovada","to‘lang"],"to‘lovlarni kuzating, qarzni onlayn yoping"],
+   map:[["Butun","O‘zbekiston","bo‘ylab"],""]},
+  pill:"3 daqiqadan boshlab",cities:["Toshkent","Samarqand","Buxoro","Xiva","Nukus","Namangan","Termiz","Farg‘ona","Qarshi","Andijon","Shahrisabz","Qo‘qon"],
+  shield:"Barcha hamkorlar O‘zbekiston Markaziy banki litsenziyasiga ega",
+  otag:"Kreditlar — bitta ilovada",orate:"4,1 · 10 000+ yuklab olingan",ogp:"Yuklab oling",oig:"@pulberry.uz",ofx:"FlexSoft LLC mahsuloti · flexsoft.uz"},
+ ru:{hook:"Нужны деньги?",hsub:"Нужный кредит — в одном приложении.",
+  beats:{ring:["+100","филиалов кредитных организаций"],home:[["Все","кредиты"],"в одном приложении"],apply:[["Одна","заявка"],"узнайте, кто готов выдать кредит"],
+   proc:[["Быстрое","рассмотрение"],""],offers:[["Сравните","и","выберите"],"изучите условия, возьмите подходящий"],
+   types:[["Нужный","вид","кредита"],"карта · авто · золото · недвижимость"],pay:[["Платите","в одном","приложении"],"следите за платежами, закрывайте долг онлайн"],
+   map:[["По","всему","Узбекистану"],""]},
+  pill:"от 3 минут",cities:["Ташкент","Самарканд","Бухара","Хива","Нукус","Наманган","Термез","Фергана","Карши","Андижан","Шахрисабз","Коканд"],
+  shield:"Все партнёры имеют лицензию Центрального банка Узбекистана",
+  otag:"Кредиты — в одном приложении",orate:"4,1 · 10 000+ скачиваний",ogp:"Скачать в",oig:"@pulberry.uz",ofx:"Продукт FlexSoft LLC · flexsoft.uz"}
 };
-const LANG = new URLSearchParams(location.search).get('lang') || 'uz';
-const C = COPY[LANG];
-document.documentElement.lang = LANG;
+const LANG=new URLSearchParams(location.search).get('lang')||'uz'; const C=COPY[LANG]; document.documentElement.lang=LANG;
+const $=id=>document.getElementById(id);
 
-const $ = id => document.getElementById(id);
-function words(id, arr, greenIdx){ $(id).innerHTML = arr.map((w,i)=>`<span class="w ${greenIdx.includes(i)?'g':''}">${w}</span>`).join(''); }
-words('s1t', C.s1t, [0,1]); $('s1s').textContent = C.s1s;
-$('s2s').textContent = C.s2s;
-words('s3t', C.s3t, [0,1,2]); $('s3s').textContent = C.s3s;
-words('s4t', C.s4t, [0]); $('s4pill').textContent = C.s4pill; $('s4s').textContent = C.s4s;
-words('s5t', C.s5t, [0,2]); $('s5s').textContent = C.s5s;
-document.querySelectorAll('.card .lbl').forEach(e=>e.textContent=C.offer);
-document.querySelectorAll('.card .btn').forEach(e=>e.textContent=C.view);
-words('s6t', C.s6t, [1,2]); C.rows.forEach((h,i)=>document.querySelector('#r'+(i+1)+' .tx').innerHTML=h);
-words('s7t', C.s7t, [0,1]); $('s7s').textContent = C.s7s; $('s7paid').textContent = C.paid;
-words('s8t', C.s8t, [1,2]); $('s8shtx').textContent = C.s8sh;
-$('s9tag').innerHTML = C.s9tag; $('s9rate').innerHTML = C.s9rate; $('s9gp1').textContent = C.s9gp1; $('s9ig').textContent = C.s9ig; $('s9fx').textContent = C.s9fx;
-
-// chips layout (3 rows)
-const chipRows = [[0,1,2],[3,4,5],[6,7,8],[9,10,11]];
-const chipEls = [];
-chipRows.forEach((row,ri)=>{
-  row.forEach(ci=>{
-    const d=document.createElement('div'); d.className='chip'; d.textContent=C.cities[ci]; d.dataset.row=ri; $('chips').appendChild(d); chipEls.push(d);
-  });
-});
-// measure and center rows after fonts load
-function layoutChips(){
-  const gap=22, rowY=[390,498,606,714]; const sc=$('s8'); sc.style.display='block';
-  chipRows.forEach((row,ri)=>{
-    const els=row.map(ci=>chipEls[ci]); const widths=els.map(e=>e.offsetWidth); const total=widths.reduce((a,b)=>a+b,0)+gap*(els.length-1);
-    let x=(1080-total)/2; els.forEach((e,i)=>{ e.style.left=x+'px'; e.style.top=rowY[ri]+'px'; x+=widths[i]+gap; });
-  });
-  sc.style.display='none';
-}
-
-// ---------- engine ----------
+// ---------------- engine ----------------
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-const E={
-  lin:p=>p, out:p=>1-Math.pow(1-p,3), in:p=>p*p*p, inout:p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2,
-  back:p=>{const c=1.6;return 1+(c+1)*Math.pow(p-1,3)+c*Math.pow(p-1,2)},
-  out5:p=>1-Math.pow(1-p,5),
-  spring:p=>1-Math.exp(-7*p)*Math.cos(11*p)
-};
+const E={lin:p=>p,out:p=>1-Math.pow(1-p,3),out5:p=>1-Math.pow(1-p,5),in:p=>p*p*p,inout:p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2,
+ back:p=>{const c=1.7;return 1+(c+1)*Math.pow(p-1,3)+c*Math.pow(p-1,2)},spring:p=>1-Math.exp(-6.5*p)*Math.cos(10*p),elastic:p=>p===1?1:1-Math.pow(2,-10*p)*Math.cos(p*Math.PI*3.5)};
 const tw=(t,t0,t1,a,b,e=E.out)=>{const p=clamp((t-t0)/(t1-t0),0,1);return a+(b-a)*e(p);};
-function st(el,o){
-  el.style.transform=`translate(${o.x||0}px,${o.y||0}px) rotate(${o.r||0}deg) scale(${o.sx??o.s??1},${o.sy??o.s??1})`;
-  if(o.o!=null) el.style.opacity=o.o;
-  el.style.filter = o.blur ? `blur(${o.blur}px)` : (el.classList.contains('tile')?'drop-shadow(0 30px 40px rgba(0,0,0,.6))':'');
-}
-// pop-in: fade + rise + overshoot scale
-function pop(el,t,t0,d=0.55,opt={}){
-  const y0=opt.y??50, s0=opt.s??0.88, extra=opt.extra||{};
-  const o=tw(t,t0,t0+d*0.5,0,1,E.lin), y=tw(t,t0,t0+d,y0,0,E.out5), s=tw(t,t0,t0+d,s0,1,E.back);
-  st(el,{o,y:y+(extra.y||0),s:s*(extra.s||1),x:extra.x||0,r:extra.r||0});
-}
-function popWords(id,t,t0,stagger=0.09){ document.querySelectorAll('#'+id+' .w').forEach((w,i)=>pop(w,t,t0+i*stagger,0.5,{y:60,s:0.8})); }
-// scene exit: last 0.35s fade+lift+blur
-function exitFx(scene,t,dur){ const e0=dur-0.35; if(t>e0){ const p=clamp((t-e0)/0.35,0,1); st(scene,{o:1-E.in(p)*1,y:-70*E.inout(p),blur:8*p}); } else st(scene,{o:1,y:0,blur:0}); }
 const osc=(t,f,ph=0)=>Math.sin(t*f*Math.PI*2+ph);
+function st(el,o){
+  let tr=`translate3d(${o.x||0}px,${o.y||0}px,${o.z||0}px)`;
+  if(o.rx) tr+=` rotateX(${o.rx}deg)`; if(o.ry) tr+=` rotateY(${o.ry}deg)`; if(o.r) tr+=` rotate(${o.r}deg)`;
+  tr+=` scale(${o.sx??o.s??1},${o.sy??o.s??1})`;
+  el.style.transform=tr; if(o.o!=null) el.style.opacity=clamp(o.o,0,1);
+  if(o.blur!=null) el.style.filter=o.blur>0.05?`blur(${o.blur}px)`:'';
+}
+function pop(el,t,t0,d=0.55,opt={}){const y0=opt.y??50,s0=opt.s??0.85;const o=tw(t,t0,t0+d*0.45,0,1,E.lin),y=tw(t,t0,t0+d,y0,0,E.out5),s=tw(t,t0,t0+d,s0,1,E.back);st(el,Object.assign({o,y:y+(opt.dy||0),s:s*(opt.ms||1),x:opt.dx||0,r:opt.r||0},opt.extra||{}));}
+function kinetic(el,text){ // words -> letters
+  el.innerHTML=text.split(' ').map(w=>`<span class="W">${[...w].map(ch=>`<span class="L">${ch}</span>`).join('')}</span>`).join(' ');
+}
+function kineticIn(el,t,t0,stagger=0.035,opt={}){const Ls=el.querySelectorAll('.L');Ls.forEach((L,i)=>{const s=t0+i*stagger;const p=clamp((t-s)/0.45,0,1);st(L,{o:tw(t,s,s+0.15,0,1,E.lin),y:(1-E.out5(p))*(opt.y??70),r:(1-E.back(p))*(opt.r??0)*((i%2)?1:-1),s:0.6+0.4*E.back(p)});});}
+function titleSet(words,green){ $('title').innerHTML=words.map((w,i)=>`<span class="W ${green.includes(i)?'g':''}">${[...w].map(ch=>`<span class="L">${ch}</span>`).join('')}</span>`).join(' '); }
+function fmt(n){return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');}
+function fmt2(n){const s=(Math.round(n*100)/100).toFixed(2).split('.');return fmt(+s[0])+','+s[1];}
+// seeded rng
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+// particles
+class Burst{constructor(n,seed,colors){this.ps=[];const r=mulberry(seed);for(let i=0;i<n;i++){const d=document.createElement('div');d.className='pt';const c=colors[Math.floor(r()*colors.length)];d.style.background=c;const sz=8+r()*16;d.style.width=sz+'px';d.style.height=(r()<0.3?sz:sz*0.5)+'px';d.style.borderRadius=r()<0.4?'50%':'3px';$('fx').appendChild(d);
+  const a=r()*Math.PI*2,sp=500+r()*900;this.ps.push({el:d,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-400,spin:(r()-0.5)*1400,g:1500,r0:r()*360});}}
+ render(t,t0,ox,oy,life=1.6){const dt=t-t0;this.ps.forEach(p=>{if(dt<0||dt>life){p.el.style.display='none';return;}p.el.style.display='block';const x=ox+p.vx*dt,y=oy+p.vy*dt+0.5*p.g*dt*dt;st(p.el,{x,y,r:p.r0+p.spin*dt,o:1-Math.pow(dt/life,2),s:1-0.4*dt/life});});}}
+const COLORS=['#94C23D','#B5E35D','#DD2114','#F0472F','#F2C14E','#ffffff'];
+const bursts={logo:new Burst(46,1,COLORS),proc:new Burst(60,2,COLORS),pick:new Burst(50,3,COLORS),pay:new Burst(70,4,COLORS),outro:new Burst(40,5,COLORS)};
+// bokeh
+const bok=[];{const r=mulberry(9);for(let i=0;i<26;i++){const d=document.createElement('div');d.className='bokeh';const s=40+r()*160;d.style.width=d.style.height=s+'px';$('bokeh').appendChild(d);bok.push({el:d,x:r()*1080,y:r()*1920,sp:20+r()*40,ph:r()*6,amp:20+r()*40,o:0.15+r()*0.35});}}
+// ring tiles
+const TILES=['fortuna','hamroh','contact','asr','delta','chinor'];
+const ringEls={back:[],front:[]};
+['back','front'].forEach(k=>TILES.forEach(n=>{const d=document.createElement('div');d.className='rt';d.innerHTML=`<img src="assets/tile-${n}.png">`;$(k==='back'?'ringBack':'ringFront').appendChild(d);ringEls[k].push(d);}));
+// city chips
+const chipEls=C.cities.map((c,i)=>{const d=document.createElement('div');d.className='chipC';d.textContent=c;$('cities').appendChild(d);return d;});
+const chipPos=[[30,430],[30,570],[30,710],[30,850],[30,990],[30,1130],[900,430],[900,570],[900,710],[900,850],[900,990],[900,1130]];
+// static copy
+kinetic($('hwm'),'Pulberry'); kinetic($('htitle'),C.hook); $('hsub').textContent=C.hsub;
+$('pill3').textContent=C.pill; $('shieldtx').textContent=C.shield;
+kinetic($('owm'),'Pulberry'); $('otag').textContent=C.otag; $('orate').innerHTML=C.orate; $('ogp1').textContent=C.ogp; $('oig').textContent=C.oig; $('ofx').textContent=C.ofx;
+$('ostars').innerHTML=[0,1,2,3,4].map(()=>'<span>★<i>★</i></span>').join('');
+function layoutChips(){chipEls.forEach((e,i)=>{const [x,y]=chipPos[i];const w=e.offsetWidth;e.style.left=(x<500?x:1050-w)+'px';e.style.top=y+'px';});}
 
-// ---------- scenes ----------
-const SCENES=[
- {id:'s1',start:0,   end:3.2,  fn:(t)=>{
-    // logo drops with bounce, wordmark follows
-    const ly=tw(t,0,0.6,-500,0,E.spring); const ls=tw(t,0,0.6,0.6,1,E.back);
-    const lift=tw(t,1.1,1.7,0,-330,E.inout);
-    st($('s1logo'),{y:ly+lift,s:ls*(1+0.02*osc(t,0.5)),o:tw(t,0,0.15,0,1,E.lin)});
-    pop($('s1wm'),t,0.45,0.6,{y:40,s:0.9,extra:{y:lift}});
-    popWords('s1t',t,1.35,0.12);
-    pop($('s1s'),t,2.0,0.6,{y:40,s:0.96});
- }},
- {id:'s2',start:3.2, end:7.0,  fn:(t)=>{
-    const tiles=[
-      {id:'t1',x:40, y:280, r:-12, fx:-700,fy:-300},
-      {id:'t2',x:390,y:190, r:-12, fx:0,   fy:-900},
-      {id:'t3',x:740,y:270, r:-12, fx:700, fy:-400},
-      {id:'t4',x:740,y:660, r:-12, fx:800, fy:300},
-      {id:'t5',x:390,y:720, r:-12, fx:0,   fy:900},
-      {id:'t6',x:40, y:650, r:-12, fx:-800,fy:400},
-    ];
-    tiles.forEach((k,i)=>{
-      const t0=0.1+i*0.12, p=clamp((t-t0)/0.7,0,1), e=E.out5(p);
-      const el=$(k.id); el.style.left=k.x+'px'; el.style.top=k.y+'px';
-      const drift=12*osc(t,0.35,i), driftx=8*osc(t,0.27,i*2);
-      st(el,{x:k.fx*(1-e)+driftx,y:k.fy*(1-e)+drift,r:k.r+(1-e)*40,s:0.6+0.4*E.back(p),o:tw(t,t0,t0+0.25,0,1,E.lin)});
-    });
-    // number slam
-    const n=Math.round(tw(t,1.5,2.3,0,100,E.out5));
-    const sl=tw(t,1.5,1.75,1.6,1,E.out5), so=tw(t,1.5,1.6,0,1,E.lin);
-    const kick=t>2.3? 1+0.06*Math.exp(-(t-2.3)*6)*Math.cos((t-2.3)*30):1;
-    $('s2n').textContent='+'+n; st($('s2n'),{s:sl*kick,o:so,y:0});
-    pop($('s2s'),t,2.2,0.6,{y:40,s:0.96});
- }},
- {id:'s3',start:7.0, end:11.0, fn:(t)=>{
-    popWords('s3t',t,0.1,0.1);
-    pop($('s3s'),t,0.6,0.6,{y:40,s:0.96});
-    const py=tw(t,0.25,1.15,1400,0,E.out5); const ps=tw(t,1.15,4,1,1.05,E.lin); const pr=tw(t,0.25,1.15,8,0,E.out5);
-    st($('s3p'),{y:py+6*osc(t,0.3),s:ps,r:pr,o:1});
-    // ring pulse around button
-    const k=t>2.2? (t-2.2)%0.9 : 0; const vis=t>2.2?1:0;
-    st($('s3ring'),{s:1+0.12*E.out(k/0.9),o:vis*(1-E.out(k/0.9))});
- }},
- {id:'s4',start:11.0,end:14.8, fn:(t)=>{
-    popWords('s4t',t,0.1,0.1);
-    const cs=tw(t,0.5,1.1,0.7,1,E.back), co=tw(t,0.5,0.8,0,1,E.lin);
-    st($('s4clock'),{s:cs,o:co,r:0});
-    const full=1759.3; const arc=tw(t,0.9,2.9,full,0,E.inout);
-    $('s4arc').setAttribute('stroke-dashoffset',arc);
-    // check pops when arc completes, number fades
-    const chk=tw(t,2.9,3.4,0,1,E.back), cho=tw(t,2.9,3.05,0,1,E.lin);
-    $('s4check').setAttribute('opacity',cho); $('s4check').setAttribute('transform',`scale(${chk})`);
-    $('s4num').setAttribute('opacity',1-cho);
-    pop($('s4pill'),t,1.2,0.6,{y:50,s:0.85});
-    pop($('s4s'),t,1.8,0.6,{y:40,s:0.96});
- }},
- {id:'s5',start:14.8,end:19.0, fn:(t)=>{
-    popWords('s5t',t,0.1,0.1);
-    const cards=[{id:'c1',r:-6,fx:-900,t0:0.4},{id:'c2',r:5,fx:900,t0:0.8},{id:'c3',r:-3,fx:-900,t0:1.2}];
-    cards.forEach((c,i)=>{
-      const p=clamp((t-c.t0)/0.7,0,1), e=E.out5(p);
-      let s=1, o=1, y=0;
-      // pick: at 2.8 Hamroh (c3) scales up & others dim
-      const pk=clamp((t-2.8)/0.5,0,1), pe=E.back(pk);
-      if(c.id==='c3'){ s=1+0.08*pe; y=-60*E.out(pk); }
-      else { o=1-0.55*E.out(pk); s=1-0.05*E.out(pk); }
-      st($(c.id),{x:c.fx*(1-e)+6*osc(t,0.3,i),y:y+8*osc(t,0.25,i*1.7),r:c.r+(1-e)*25*(c.fx<0?-1:1),s,o:o*tw(t,c.t0,c.t0+0.2,0,1,E.lin)});
-    });
-    pop($('s5s'),t,3.0,0.6,{y:40,s:0.96});
- }},
- {id:'s6',start:19.0,end:23.0, fn:(t)=>{
-    popWords('s6t',t,0.1,0.09);
-    ['r1','r2','r3','r4'].forEach((id,i)=>{
-      const t0=0.5+i*0.3, p=clamp((t-t0)/0.75,0,1), e=E.out5(p); const dir=i%2?1:-1;
-      st($(id),{x:dir*1100*(1-e)+5*osc(t,0.3,i),y:6*osc(t,0.22,i*2),o:tw(t,t0,t0+0.2,0,1,E.lin),s:0.96+0.04*e});
-    });
- }},
- {id:'s7',start:23.0,end:27.0, fn:(t)=>{
-    const py=tw(t,0.1,1.0,-1500,0,E.out5); const pan=tw(t,1.2,3.8,0,-70,E.inout);
-    st($('s7p'),{y:py+pan,s:tw(t,1,4,1,1.03,E.lin),o:1});
-    popWords('s7t',t,0.5,0.09);
-    pop($('s7s'),t,1.2,0.6,{y:40,s:0.96});
-    pop($('s7paid'),t,2.8,0.5,{y:30,s:0.6,extra:{r:-4}});
- }},
- {id:'s8',start:27.0,end:31.2, fn:(t)=>{
-    popWords('s8t',t,0.1,0.1);
-    const ms=tw(t,0.3,1.2,0.85,1,E.out5), mo=tw(t,0.3,0.7,0,1,E.lin);
-    st($('s8map'),{s:ms*(1+0.015*osc(t,0.2)),o:mo,y:10*osc(t,0.18)});
-    chipEls.forEach((e,i)=>pop(e,t,0.6+i*0.13,0.45,{y:30,s:0.5}));
-    pop($('s8sh'),t,2.6,0.6,{y:60,s:0.96});
- }},
- {id:'s9',start:31.2,end:36.0, fn:(t)=>{
-    const ls=tw(t,0.05,0.7,0.4,1,E.back), lo=tw(t,0.05,0.25,0,1,E.lin);
-    st($('s9logo'),{s:ls*(1+0.025*osc(t,0.4)),o:lo,y:0});
-    pop($('s9wm'),t,0.35,0.6,{y:40,s:0.9});
-    pop($('s9tag'),t,0.8,0.6,{y:40,s:0.96});
-    pop($('s9rate'),t,1.1,0.6,{y:30,s:0.96});
-    const gpk=t>1.9? 1+0.04*Math.max(0,osc(t-1.9,0.8)):1;
-    pop($('s9gp'),t,1.4,0.6,{y:60,s:0.8,extra:{s:gpk}});
-    pop($('s9ig'),t,1.9,0.6,{y:30,s:0.96});
-    pop($('s9fx'),t,2.2,0.6,{y:20,s:1});
- }},
+// ---------------- timeline ----------------
+const T={hookEnd:2.6, phoneIn:2.7, ringStart:3.0, ringEnd:5.4, tapGet:6.0, dragA:6.8, dragB:8.0, tapNext:8.4, tapChip:9.1, tapSend:9.5,
+ procStart:9.8, procDone:11.7, toast:12.0, toOffers:12.6, scrollA:14.0, scrollB:14.6, tapView:15.2, tapAcc:16.2, toTypes:16.8, scroll2A:18.6, scroll2B:19.4,
+ toPay:20.2, tapPay:22.4, paySucc:22.6, toMap:24.0, outro:27.6, end:32.2};
+const DURATION=T.end;
+const PUSHES=[['scr-home',null],['scr-step1',T.tapGet+0.12],['scr-step2',T.tapNext+0.1],['scr-proc',T.tapSend+0.12],['scr-offers',T.toOffers],['scr-types',T.toTypes],['scr-pay',T.toPay],['scr-map',T.toMap]];
+const BEATS=[
+ {id:'home',t0:T.ringEnd,t1:T.tapGet+0.3,words:C.beats.home[0],green:[0,1],sub:C.beats.home[1]},
+ {id:'apply',t0:T.tapGet+0.4,t1:T.procStart,words:C.beats.apply[0],green:[0,1,2],sub:C.beats.apply[1]},
+ {id:'proc',t0:T.procStart+0.1,t1:T.toOffers,words:C.beats.proc[0],green:[0],sub:C.beats.proc[1]},
+ {id:'offers',t0:T.toOffers+0.1,t1:T.toTypes,words:C.beats.offers[0],green:[0,2],sub:C.beats.offers[1]},
+ {id:'types',t0:T.toTypes+0.1,t1:T.toPay,words:C.beats.types[0],green:[1,2],sub:C.beats.types[1]},
+ {id:'pay',t0:T.toPay+0.1,t1:T.toMap,words:C.beats.pay[0],green:[0,1],sub:C.beats.pay[1]},
+ {id:'map',t0:T.toMap+0.1,t1:T.outro,words:C.beats.map[0],green:[1,2],sub:C.beats.map[1]},
 ];
-const DURATION=36.0;
-
-function seek(t){
-  // background drift
-  st($('blob1'),{x:60*osc(t,0.05),y:40*osc(t,0.04,1),r:-30+4*osc(t,0.03),s:1+0.05*osc(t,0.06)});
-  st($('blob2'),{x:-50*osc(t,0.045,2),y:50*osc(t,0.035),r:10*osc(t,0.03,1),s:1+0.06*osc(t,0.05,1)});
-  const gx=Math.floor((Math.sin(t*997.1)*0.5+0.5)*300), gy=Math.floor((Math.sin(t*611.7)*0.5+0.5)*300);
-  $('grainrect').setAttribute('transform',`translate(${-gx} ${-gy})`);
-  SCENES.forEach(s=>{
-    const el=$(s.id);
-    if(t>=s.start && t<s.end){ el.style.display='block'; const lt=t-s.start; s.fn(lt); exitFx(el,lt,s.end-s.start); }
-    else el.style.display='none';
+let curBeat=null;
+function renderTitle(t){
+  const b=BEATS.find(b=>t>=b.t0&&t<b.t1);
+  const tt=$('title'),ss=$('sub');
+  if(!b){tt.style.display='none';ss.style.display='none';return;}
+  tt.style.display='block';ss.style.display='block';
+  if(curBeat!==b.id){titleSet(b.words,b.green);curBeat=b.id;}
+  ss.textContent=b.sub;
+  const lt=t-b.t0, ex=b.t1-0.3;
+  kineticIn(tt,t,b.t0,0.03,{y:80,r:14});
+  pop(ss,t,b.t0+0.35,0.5,{y:30,s:0.96});
+  if(t>ex){const p=clamp((t-ex)/0.3,0,1);tt.style.opacity=1-p;ss.style.opacity=1-p;tt.style.filter=`blur(${8*p}px)`;tt.style.transform=`translate3d(0,${-50*p}px,0)`;ss.style.transform=`translate3d(0,${-30*p}px,0)`;}
+  else{tt.style.filter='';tt.style.transform='';tt.style.opacity=1;ss.style.filter='';}
+}
+// phone camera
+function phoneCam(t){
+  const wrap=$('phone');
+  if(t<T.phoneIn||t>=T.outro+0.1){wrap.style.display='none';return;}
+  wrap.style.display='block';
+  const inP=clamp((t-T.phoneIn)/0.9,0,1), e=E.out5(inP);
+  let y=1700*(1-e), ry=-42*(1-e)-8, rx=22*(1-e)+4, s=0.9+0.1*e, x=0;
+  // idle sway
+  ry+=4*osc(t,0.11); rx+=2*osc(t,0.09,1); y+=8*osc(t,0.15);
+  // focus zooms
+  const z=(a,b,v)=>{if(t>a&&t<b){const p=clamp((t-a)/0.5,0,1)*(1-clamp((t-(b-0.5))/0.5,0,1));return v*E.inout(p);}return 0;};
+  if(t>T.toMap){const q=E.inout(clamp((t-T.toMap)/0.6,0,1));s-=0.14*q;}
+  s+=z(T.dragA-0.3,T.tapNext+0.2,0.12)+z(T.procStart,T.toOffers,0.06)+z(T.tapView-0.2,T.toTypes,0.08)+z(T.tapPay-0.3,T.toMap,0.1);
+  y+=z(T.dragA-0.3,T.tapNext+0.2,180)+z(T.tapPay-0.3,T.toMap,-120)+z(T.tapView-0.2,T.toTypes,-60);
+  ry-=z(T.dragA-0.3,T.tapNext+0.2,6);
+  // punches
+  const punch=(a,v)=>t>a?v*Math.exp(-(t-a)*7)*Math.cos((t-a)*28):0;
+  s+=punch(T.procDone,0.05)+punch(T.paySucc,0.06)+punch(T.tapAcc,0.04);
+  // exit before outro
+  if(t>T.outro-0.4){const p=clamp((t-(T.outro-0.4))/0.4,0,1);y+=900*E.in(p);ry+=30*p;}
+  st(wrap,{x,y,ry,rx,s,o:1});
+  // glass sweep
+  const sw=$('sweep'); const ss=[T.phoneIn+0.6,T.toOffers+0.2,T.toPay+0.2,T.toMap+0.2];let shown=false;
+  ss.forEach(a=>{if(t>a&&t<a+0.9){st(sw,{x:tw(t,a,a+0.9,-900,900,E.inout),r:0,o:1});shown=true;}});
+  if(!shown) sw.style.opacity=0;
+}
+// screens navigation
+function screens(t){
+  let idx=0; for(let i=1;i<PUSHES.length;i++) if(t>=PUSHES[i][1]) idx=i;
+  PUSHES.forEach(([id,at],i)=>{
+    const el=$(id), dim=el.querySelector('.dim');
+    if(i<idx-1||i>idx){el.style.display='none';return;}
+    el.style.display='block';
+    if(i===idx){const p=at==null?1:clamp((t-at)/0.45,0,1);const e=E.out5(p);st(el,{x:632*(1-e)});el.style.zIndex=2;el.style.boxShadow='-30px 0 60px rgba(0,0,0,.5)';dim.style.opacity=0;}
+    else{const at2=PUSHES[idx][1];const p=clamp((t-at2)/0.45,0,1);const e=E.out5(p);st(el,{x:-160*e});el.style.zIndex=1;dim.style.opacity=0.6*e;}
   });
 }
-window.seek=seek; window.DURATION=DURATION;
-document.fonts.ready.then(()=>{ layoutChips(); window.READY=true; seek(0); });
+// finger + taps
+const TAPS=[[T.tapGet,316,1083],[T.tapNext,316,1113],[T.tapChip,188,520],[T.tapSend,316,1113],[T.tapView,316,  (778+208)-200 ],[T.tapAcc,316,(778+368)-200],[T.tapPay,316,1113]];
+const DRAGS=[[T.dragA,T.dragB,60,498,146,498],[T.scrollA,T.scrollB,316,980,316,760],[T.scroll2A,T.scroll2B,316,1000,316,840]];
+function finger(t){
+  const f=$('finger'),rp=$('ripple'); let x=null,y=null,press=0,vis=0,rip=null;
+  TAPS.forEach(([a,tx,ty])=>{if(t>a-0.35&&t<a+0.35){vis=1;const p=clamp((t-(a-0.35))/0.3,0,1);x=tx+40*(1-E.out(p));y=ty+60*(1-E.out(p));press=t>a?1:0;if(t>a&&t<a+0.5)rip=[tx,ty,(t-a)/0.5];if(t>a+0.2){const q=clamp((t-(a+0.2))/0.15,0,1);f.style.opacity=1-q;}}});
+  DRAGS.forEach(([a,b,x0,y0,x1,y1])=>{if(t>a-0.3&&t<b+0.25){vis=1;const p=clamp((t-a)/(b-a),0,1);const e=E.inout(p);x=x0+(x1-x0)*e;y=y0+(y1-y0)*e;press=(t>a&&t<b)?1:0;if(t<a){const q=clamp((t-(a-0.3))/0.3,0,1);x=x0+30*(1-E.out(q));y=y0+50*(1-E.out(q));}if(t>b){f.style.opacity=1-clamp((t-b)/0.25,0,1);}}});
+  if(!vis){f.style.display='none';rp.style.display='none';return;}
+  f.style.display='block'; st(f,{x,y,s:press?0.78:1}); if(!(press===0&&t>0)) {}
+  if(press) f.style.opacity=1; else if(f.style.opacity==='') f.style.opacity=1;
+  if(rip){rp.style.display='block';st(rp,{x:rip[0],y:rip[1],s:1+rip[2]*3,o:1-rip[2]});}else rp.style.display='none';
+}
+const pressFx=(el,t,a)=>{const p=t>a&&t<a+0.25?Math.sin(clamp((t-a)/0.25,0,1)*Math.PI):0;st(el,{s:1-0.06*p});};
+// screen content animations
+function appContent(t){
+  // HOME: list cards slide in with phone
+  ['homeL1','homeL2'].forEach((id,i)=>pop($(id),t,T.phoneIn+0.5+i*0.12,0.5,{y:40,s:0.97}));
+  pressFx($('btnGet'),t,T.tapGet);
+  // STEP1 slider
+  const p=clamp((t-T.dragA)/(T.dragB-T.dragA),0,1),e=E.inout(p); const amount=100000+(50000000-100000)*e;
+  $('amt').textContent=fmt(amount); const px=86*e; $('sth').style.left=px+'px'; $('sfill').style.width=px+'px';
+  st($('amt'),{s:1+0.06*(p>0&&p<1?1:0)});
+  pressFx($('btnNext1'),t,T.tapNext);
+  // STEP2 chip
+  $('chip12').className='chip2'+(t>T.tapChip?' on':''); pressFx($('chip12'),t,T.tapChip); pressFx($('btnSend'),t,T.tapSend);
+  // PROC
+  const pp=clamp((t-T.procStart-0.2)/(T.procDone-T.procStart-0.25),0,1),pe=E.inout(pp);
+  $('parc').setAttribute('stroke-dashoffset',942.5*(1-pe)); $('ppct').textContent=Math.round(pe*100)+'%';
+  const ck=tw(t,T.procDone,T.procDone+0.45,0,1,E.back),cko=tw(t,T.procDone,T.procDone+0.12,0,1,E.lin);
+  $('pchk').setAttribute('opacity',cko);$('pchk').setAttribute('transform',`scale(${ck})`);$('ppct').setAttribute('opacity',1-cko);
+  $('ptx').textContent=t>T.procDone?(LANG==='ru'?'Одобрено!':'Tasdiqlandi!'):(LANG==='ru'?'Заявка рассматривается…':'Arizangiz ko‘rib chiqilmoqda…');
+  $('ptx').style.color=t>T.procDone?'#94C23D':'#fff';
+  $('ptx2').textContent=t>T.procDone?(LANG==='ru'?'Ответ получен за 2 мин 41 с':'Javob 2 daqiqa 41 soniyada keldi'):(LANG==='ru'?'Обычно 3 минуты':'Odatda 3 daqiqa');
+  const to=$('toast'); if(t>T.toast){const q=clamp((t-T.toast)/0.5,0,1);st(to,{y:-160*(1-E.back(q)),o:1});}else st(to,{y:-160,o:0});
+  $('toast').lastElementChild.textContent=LANG==='ru'?'3 новых предложения!':'3 ta yangi taklif keldi!';
+  // OFFERS
+  const amts=[90000000,120000000,155000000];
+  [1,2,3].forEach((i,k)=>{const a=T.toOffers+0.3+k*0.28;pop($('oc'+i),t,a,0.6,{y:120,s:0.92,extra:{x:0}});const q=clamp((t-a-0.1)/0.7,0,1);$('oa'+i).textContent=fmt2(amts[k]*E.out(q));});
+  const sc=tw(t,T.scrollA,T.scrollB,0,-200,E.inout);
+  const exp=tw(t,T.tapView+0.1,T.tapView+0.5,0,1,E.out5);
+  $('oc3').style.height=(270+150*exp)+'px'; $('oc3').style.borderColor=exp>0.5?'#94C23D':'#34363b'; $('oc3').style.boxShadow=exp>0?`0 0 ${60*exp}px rgba(148,194,61,${0.5*exp})`:'none';
+  $('oc3').querySelector('.det').style.opacity=exp; $('oc3acc').style.opacity=exp;
+  st($('olist'),{y:sc});
+  pressFx($('oc3view'),t,T.tapView); pressFx($('oc3acc'),t,T.tapAcc);
+  if(t>T.tapAcc+0.1){$('oc3acc').textContent=LANG==='ru'?'Принято ✓':'Qabul qilindi ✓';$('oc3acc').style.background='#B5E35D';} else {$('oc3acc').textContent=LANG==='ru'?'Принять ✓':'Qabul qilish ✓';$('oc3acc').style.background='';}
+  [1,2].forEach(i=>{const q=tw(t,T.tapView+0.1,T.tapView+0.5,1,0.35,E.out);$('oc'+i).style.opacity=Math.min(+$('oc'+i).style.opacity||1,q);});
+  // TYPES
+  [1,2,3,4].forEach((i,k)=>{const a=T.toTypes+0.35+k*0.22;const q=clamp((t-a)/0.6,0,1);const el=$('tc'+i);el.style.transformOrigin='50% 0';st(el,{rx:70*(1-E.out5(q)),o:tw(t,a,a+0.2,0,1,E.lin),y:30*(1-E.out5(q))});
+    const kb=$('kb'+i);const z=1+0.14*clamp((t-a)/3.5,0,1);kb.style.transform=`translate(-50%,-50%) scale(${z}) translate(${6*osc(t,0.1,k)}px,${4*osc(t,0.13,k)}px)`;});
+  st($('tlist'),{y:tw(t,T.scroll2A,T.scroll2B,0,-160,E.inout)});
+  // PAY
+  const pc=clamp((t-T.toPay-0.4)/0.8,0,1),pce=E.out(pc);
+  $('paySum').textContent=fmt2(38527.11*pce);$('payInt').textContent=fmt2(38527.11*pce);$('payIn').textContent=fmt2(38527.11*pce);$('payTot').textContent=fmt2(38912.38*pce);
+  pressFx($('btnPay'),t,T.tapPay);
+  const su=$('paySucc'); if(t>T.paySucc){su.style.display='flex';su.style.opacity=tw(t,T.paySucc,T.paySucc+0.2,0,1,E.lin);st($('payChk'),{s:tw(t,T.paySucc,T.paySucc+0.5,0.2,1,E.elastic),o:1});pop($('succH'),t,T.paySucc+0.25,0.5,{y:30});pop($('succS'),t,T.paySucc+0.4,0.5,{y:24});pop($('succM'),t,T.paySucc+0.55,0.5,{y:20});
+    $('succH').textContent=LANG==='ru'?'Оплачено!':'To‘landi!';$('succM').textContent=LANG==='ru'?'Чек отправлен ✓':'Chek yuborildi ✓';}
+  else su.style.display='none';
+  // MAP
+  const mi=$('mapimg'); const ms=tw(t,T.toMap,T.toMap+1.2,1.25,1,E.out5); mi.style.transform=`scale(${ms*(1+0.02*osc(t,0.2))}) translate(${8*osc(t,0.12)}px,${6*osc(t,0.1,1)}px)`;
+  [['mr1',0.5],['mr2',0.8],['mr3',1.1]].forEach(([id,off])=>{const el=$(id);const a=T.toMap+off;if(t>a){const q=((t-a)%1.1)/1.1;st(el,{s:1+q*5,o:1-q});el.style.display='block';}else el.style.display='none';});
+  pop($('mapSheet'),t,T.toMap+0.6,0.6,{y:200,s:1});
+}
+// ring
+function ring(t){
+  const vis=t>T.ringStart-0.2&&t<T.ringEnd+0.9;
+  ['back','front'].forEach(k=>$(k==='back'?'ringBack':'ringFront').style.display=vis?'block':'none'); if(!vis) return;
+  const base=(t-T.ringStart)*55; const inP=E.out5(clamp((t-T.ringStart)/0.9,0,1)); const outP=E.in(clamp((t-T.ringEnd)/0.7,0,1));
+  const R=520*inP+700*outP;
+  TILES.forEach((n,i)=>{const a=(base+i*60)*Math.PI/180;const x=Math.sin(a)*R,z=Math.cos(a)*R;const depth=(z/Math.max(R,1)+1)/2;
+    const o=(0.35+0.65*depth)*inP*(1-outP);
+    ['back','front'].forEach(k=>{const el=ringEls[k][i];const show=(k==='front')===(z>=0);el.style.display=show?'block':'none';if(show)st(el,{x,y:-60+40*osc(t,0.3,i),z,ry:(base+i*60),s:0.75+0.5*depth,o});});});
+}
+function bigCounter(t){
+  const el=$('bigN'),sb=$('bottom'); const on=t>T.ringStart+0.3&&t<T.ringEnd+0.3;
+  if(!on){el.style.display='none';return;} el.style.display='block';
+  const n=Math.round(tw(t,T.ringStart+0.4,T.ringStart+1.3,0,100,E.out5));el.textContent='+'+n;
+  const kick=t>T.ringStart+1.3?1+0.08*Math.exp(-(t-T.ringStart-1.3)*6)*Math.cos((t-T.ringStart-1.3)*30):1;
+  st(el,{s:tw(t,T.ringStart+0.3,T.ringStart+0.6,1.5,1,E.out5)*kick,o:tw(t,T.ringStart+0.3,T.ringStart+0.45,0,1,E.lin)});
+  const ex=clamp((t-T.ringEnd)/0.3,0,1); el.style.opacity=Math.min(+el.style.opacity,1-ex);
+}
+function bottomText(t){
+  const b=$('bottom'); let txt='',a=0;
+  if(t>T.ringStart+0.6&&t<T.ringEnd+0.3){txt=C.beats.ring[1];a=T.ringStart+0.6;}
+  if(!txt){b.style.display='none';}else{b.style.display='block';b.textContent=txt;pop(b,t,a,0.5,{y:30,s:0.96});const ex=clamp((t-T.ringEnd)/0.3,0,1);b.style.opacity=Math.min(+b.style.opacity,1-ex);}
+  const pl=$('pill3'); if(t>T.procStart+0.6&&t<T.toOffers){pl.style.display='block';pop(pl,t,T.procStart+0.6,0.6,{y:60,s:0.8});const ex=clamp((t-(T.toOffers-0.3))/0.3,0,1);pl.style.opacity=Math.min(+pl.style.opacity,1-ex);}else pl.style.display='none';
+  const sh=$('shield'); if(t>T.toMap+2.2&&t<T.outro){sh.style.display='block';pop(sh,t,T.toMap+2.2,0.6,{y:60});}else sh.style.display='none';
+  chipEls.forEach((e,i)=>{const a=T.toMap+0.8+i*0.11; if(t>a&&t<T.outro){e.style.display='block';pop(e,t,a,0.5,{y:30,s:0.4,r:(i%2?6:-6)*(1-clamp((t-a)/0.5,0,1)),extra:{}});st(e,{s:1,o:tw(t,a,a+0.15,0,1,E.lin),y:tw(t,a,a+0.5,30,0,E.out5)+5*osc(t,0.3,i),r:(i%2?4:-4)*(1-E.out5(clamp((t-a)/0.6,0,1)))});}else e.style.display='none';});
+}
+function hook(t){
+  const h=$('hook'); if(t>=T.hookEnd+0.1){h.style.display='none';return;} h.style.display='block';
+  const ly=tw(t,0.05,0.55,-900,0,E.out5), sq=t>0.55?1+0.25*Math.exp(-(t-0.55)*9)*Math.sin((t-0.55)*34):1;
+  st($('hlogo'),{y:ly,sx:2-sq,sy:sq,o:tw(t,0.05,0.15,0,1,E.lin),r:tw(t,0.05,0.55,-25,0,E.out5)});
+  kineticIn($('hwm'),t,0.6,0.04,{y:60,r:20});
+  kineticIn($('htitle'),t,1.3,0.05,{y:120,r:30});
+  pop($('hsub'),t,2.05,0.5,{y:40});
+  bursts.logo.render(t,0.55,540,750,1.4);
+}
+function outro(t){
+  const o=$('outro'); if(t<T.outro){o.style.display='none';return;} o.style.display='block';
+  const a=T.outro+0.1;
+  st($('ologo'),{s:tw(t,a,a+0.8,0.3,1,E.elastic),ry:tw(t,a,a+0.8,180,0,E.out5),o:tw(t,a,a+0.15,0,1,E.lin),y:6*osc(t,0.4)});
+  bursts.outro.render(t,a+0.25,540,590,1.5);
+  kineticIn($('owm'),t,a+0.4,0.04,{y:60,r:16});
+  pop($('otag'),t,a+0.9,0.5,{y:30});
+  const stars=$('ostars').querySelectorAll('span'); stars.forEach((s,i)=>{const b=a+1.3+i*0.14;const q=clamp((t-b)/0.3,0,1);s.querySelector('i').style.width=(i<4?100:10)*E.out(q)+'%';st(s,{s:1+0.5*Math.sin(q*Math.PI),o:1});});
+  $('ostars').style.opacity=tw(t,a+1.2,a+1.4,0,1,E.lin);
+  pop($('orate'),t,a+1.9,0.5,{y:24});
+  pop($('ogp'),t,a+2.3,0.6,{y:60,s:0.8}); st($('oshine'),{x:tw(t,a+2.9,a+3.6,-700,700,E.inout)});
+  pop($('oig'),t,a+2.8,0.5,{y:24}); pop($('ofx'),t,a+3.1,0.5,{y:16});
+}
+function bursts_(t){bursts.proc.render(t,T.procDone,540,780,1.5);bursts.pick.render(t,T.tapAcc,540,1100,1.5);bursts.pay.render(t,T.paySucc,540,900,1.7);}
+function wipes(t){
+  const w=$('wipe'); let shown=false;
+  [T.hookEnd,T.outro].forEach(a=>{if(t>a-0.45&&t<a+0.45){const p=clamp((t-(a-0.45))/0.9,0,1);st(w,{x:tw(p,0,1,-2200,2400,E.inout),r:-18,o:1});shown=true;}});
+  w.style.display=shown?'block':'none';
+  const fl=$('flash'); let fo=0; [T.procDone,T.paySucc].forEach(a=>{if(t>a&&t<a+0.35)fo=Math.max(fo,0.35*(1-(t-a)/0.35));}); fl.style.opacity=fo;
+  $('fade').style.opacity=tw(t,T.end-0.6,T.end,0,1,E.lin);
+}
+function background(t){
+  st($('blob1'),{x:70*osc(t,0.05),y:50*osc(t,0.04,1),r:-28+6*osc(t,0.03),s:1+0.06*osc(t,0.06)});
+  st($('blob2'),{x:-60*osc(t,0.045,2),y:60*osc(t,0.035),r:12*osc(t,0.03,1),s:1+0.07*osc(t,0.05,1)});
+  $('grid').style.backgroundPosition=`${(t*12)%48}px ${(t*8)%48}px`;
+  bok.forEach((b,i)=>{st(b.el,{x:b.x+b.amp*osc(t,0.08,b.ph),y:((b.y-t*b.sp)%2100+2100)%2100-100,o:b.o*(0.7+0.3*osc(t,0.3,b.ph))});});
+  const gx=Math.floor((Math.sin(t*997.1)*0.5+0.5)*256), gy=Math.floor((Math.sin(t*611.7)*0.5+0.5)*256); $('grain').style.backgroundPosition=`${gx}px ${gy}px`;
+}
+function seek(t){
+  background(t); hook(t); renderTitle(t); bigCounter(t); bottomText(t); phoneCam(t); screens(t); appContent(t); finger(t); ring(t); bursts_(t); outro(t); wipes(t);
+}
+window.seek=seek; window.DURATION=DURATION; window.T=T;
+document.fonts.ready.then(()=>{layoutChips();window.READY=true;seek(0);});
 </script>
 </body>
 </html>
